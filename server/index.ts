@@ -26,6 +26,10 @@ import {
   handleGetRedemptions as adminGetRedemptions,
   handleUpdateRedemption,
 } from "./routes/admin";
+import {
+  handleCreatePayment,
+  handleGetPaymentHistory,
+} from "./routes/payment";
 import { authMiddleware, adminMiddleware } from "./lib/middleware";
 
 export function createServer() {
