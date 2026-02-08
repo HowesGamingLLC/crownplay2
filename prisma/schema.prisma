@@ -175,14 +175,14 @@ model ContentBlock {
 
 model AuditLog {
   id        String   @id @default(cuid())
-  adminId   String
-  admin     User     @relation(fields: [adminId], references: [id], onDelete: SetNull)
-  
+  adminId   String?
+  admin     User?    @relation(fields: [adminId], references: [id], onDelete: SetNull)
+
   action    String
   targetType String
   targetId  String
   metadata  String?  // JSON string
-  
+
   createdAt DateTime @default(now())
 }
 
