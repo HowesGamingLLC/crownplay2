@@ -1,8 +1,11 @@
-import { Client, Environment } from "square";
+import pkg from "square";
+
+const { Client, Environment } = pkg;
 
 const client = new Client({
   environment:
-    (process.env.SQUARE_ENVIRONMENT as Environment) || Environment.Sandbox,
+    (process.env.SQUARE_ENVIRONMENT as "production" | "sandbox") ||
+    Environment.Sandbox,
   accessToken: process.env.SQUARE_ACCESS_TOKEN,
   clientSignatureKey: process.env.SQUARE_SIGNATURE_KEY,
 });
