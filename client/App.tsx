@@ -98,7 +98,7 @@ const App = () => (
               path="/admin"
               element={
                 <ProtectedRoute requireAdmin>
-                  <Placeholder title="Admin Dashboard" />
+                  <AdminDashboard />
                 </ProtectedRoute>
               }
             />
