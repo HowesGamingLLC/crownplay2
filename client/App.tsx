@@ -81,7 +81,7 @@ const App = () => (
               path="/purchase"
               element={
                 <ProtectedRoute>
-                  <Placeholder title="Buy Coins" />
+                  <CoinStore />
                 </ProtectedRoute>
               }
             />
