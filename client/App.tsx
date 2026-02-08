@@ -15,6 +15,9 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import CoinStore from "./pages/CoinStore";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminUsers from "./pages/AdminUsers";
+import AdminTransactions from "./pages/AdminTransactions";
+import AdminRedemptions from "./pages/AdminRedemptions";
 import NotFound from "./pages/NotFound";
 import Placeholder from "./pages/Placeholder";
 
