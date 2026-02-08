@@ -16,13 +16,14 @@ model User {
   passwordHash String
   role      Role       @default(PLAYER)
   status    UserStatus @default(ACTIVE)
-  
+
   profile   Profile?
   wallet    Wallet?
   transactions Transaction[]
   redemptionRequests RedemptionRequest[]
+  payments  Payment[]
   auditLogs AuditLog[]
-  
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
