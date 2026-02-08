@@ -53,7 +53,7 @@ const App = () => (
               path="/games"
               element={
                 <ProtectedRoute>
-                  <Placeholder title="Games Library" />
+                  <Games />
                 </ProtectedRoute>
               }
             />
