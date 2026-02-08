@@ -31,9 +31,8 @@ export default function AdminRedemptions() {
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState(0);
   const [statusFilter, setStatusFilter] = useState("PENDING");
-  const [selectedRedemption, setSelectedRedemption] = useState<Redemption | null>(
-    null
-  );
+  const [selectedRedemption, setSelectedRedemption] =
+    useState<Redemption | null>(null);
   const [newStatus, setNewStatus] = useState("APPROVED");
   const [notes, setNotes] = useState("");
 
@@ -51,7 +50,7 @@ export default function AdminRedemptions() {
         `/api/admin/redemptions?status=${statusFilter}&limit=${limit}&offset=${page * limit}`,
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
       const data = await response.json();
       setRedemptions(data.redemptions);
@@ -80,7 +79,7 @@ export default function AdminRedemptions() {
             status: newStatus,
             notes: notes,
           }),
-        }
+        },
       );
 
       if (response.ok) {
@@ -169,7 +168,10 @@ export default function AdminRedemptions() {
                   </thead>
                   <tbody>
                     {redemptions.map((redemption) => (
-                      <tr key={redemption.id} className="border-b border-slate-700">
+                      <tr
+                        key={redemption.id}
+                        className="border-b border-slate-700"
+                      >
                         <td className="px-6 py-4 text-slate-300">
                           {new Date(redemption.createdAt).toLocaleDateString()}
                         </td>
@@ -186,12 +188,13 @@ export default function AdminRedemptions() {
                         </td>
                         <td className="px-6 py-4 font-semibold text-purple-300">
                           {(
-                            BigInt(redemption.amount) /
-                            1000000000000000000n
+                            BigInt(redemption.amount) / 1000000000000000000n
                           ).toString()}
                         </td>
                         <td className="px-6 py-4">
-                          <span className={`px-2 py-1 rounded text-xs font-semibold ${getStatusColor(redemption.status)}`}>
+                          <span
+                            className={`px-2 py-1 rounded text-xs font-semibold ${getStatusColor(redemption.status)}`}
+                          >
                             {redemption.status}
                           </span>
                         </td>
@@ -261,8 +264,7 @@ export default function AdminRedemptions() {
                     <p className="text-sm text-slate-400">
                       Amount:{" "}
                       {(
-                        BigInt(selectedRedemption.amount) /
-                        1000000000000000000n
+                        BigInt(selectedRedemption.amount) / 1000000000000000000n
                       ).toString()}{" "}
                       Sweep Coins
                     </p>

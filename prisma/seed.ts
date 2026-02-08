@@ -237,26 +237,22 @@ async function main() {
     {
       key: "homepage_hero_subtitle",
       title: "Hero Subtitle",
-      body:
-        "Experience the thrill of crown-classic sweepstakes casino gaming with Gold Coins and Sweep Coins",
+      body: "Experience the thrill of crown-classic sweepstakes casino gaming with Gold Coins and Sweep Coins",
     },
     {
       key: "faq_how_to_play",
       title: "How to Play",
-      body:
-        "Create an account, purchase Gold Coins, and start playing your favorite games. Win Sweep Coins to redeem for prizes!",
+      body: "Create an account, purchase Gold Coins, and start playing your favorite games. Win Sweep Coins to redeem for prizes!",
     },
     {
       key: "terms_section",
       title: "Terms of Service",
-      body:
-        "By using CrownPlay, you agree to our terms and conditions. Players must be 18+ or the legal age of majority in their jurisdiction.",
+      body: "By using CrownPlay, you agree to our terms and conditions. Players must be 18+ or the legal age of majority in their jurisdiction.",
     },
     {
       key: "privacy_section",
       title: "Privacy Policy",
-      body:
-        "We respect your privacy. Your personal information is encrypted and never shared with third parties.",
+      body: "We respect your privacy. Your personal information is encrypted and never shared with third parties.",
     },
   ];
 

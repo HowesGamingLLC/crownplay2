@@ -11,24 +11,24 @@ export async function hashPassword(password: string): Promise<string> {
 
 export async function verifyPassword(
   password: string,
-  hash: string
+  hash: string,
 ): Promise<boolean> {
   return bcrypt.compare(password, hash);
 }
 
 export function generateToken(
   userId: string,
-  role: string
+  role: string,
 ): { token: string; expiresIn: string } {
-  const token = jwt.sign(
-    { userId, role },
-    JWT_SECRET,
-    { expiresIn: JWT_EXPIRY }
-  );
+  const token = jwt.sign({ userId, role }, JWT_SECRET, {
+    expiresIn: JWT_EXPIRY,
+  });
   return { token, expiresIn: JWT_EXPIRY };
 }
 
-export function verifyToken(token: string): { userId: string; role: string } | null {
+export function verifyToken(
+  token: string,
+): { userId: string; role: string } | null {
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as {
       userId: string;
@@ -41,7 +41,7 @@ export function verifyToken(token: string): { userId: string; role: string } | n
 }
 
 export function extractTokenFromHeader(
-  authHeader: string | undefined
+  authHeader: string | undefined,
 ): string | null {
   if (!authHeader) return null;
   const parts = authHeader.split(" ");

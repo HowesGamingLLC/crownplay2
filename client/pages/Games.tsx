@@ -34,7 +34,7 @@ export default function Games() {
     const filtered = games.filter(
       (game) =>
         game.name.toLowerCase().includes(search.toLowerCase()) ||
-        game.description?.toLowerCase().includes(search.toLowerCase())
+        game.description?.toLowerCase().includes(search.toLowerCase()),
     );
     setFilteredGames(filtered);
   }, [search, games]);
@@ -54,7 +54,7 @@ export default function Games() {
 
   const handlePlayGame = (game: Game) => {
     toast.info(
-      `${game.name} game session starting... This is a simulation. In production, this would launch the game.`
+      `${game.name} game session starting... This is a simulation. In production, this would launch the game.`,
     );
     // In a real scenario, this would launch the game with the WebGL/WebAssembly engine
   };
@@ -74,7 +74,9 @@ export default function Games() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-amber-300 mb-4">Game Library</h1>
+          <h1 className="text-4xl font-bold text-amber-300 mb-4">
+            Game Library
+          </h1>
           <p className="text-slate-400 text-lg mb-6">
             Explore our collection of premium casino games. Current Balance:{" "}
             <span className="text-amber-300 font-bold">
@@ -148,7 +150,9 @@ export default function Games() {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-slate-400">No games found matching your search</p>
+            <p className="text-slate-400">
+              No games found matching your search
+            </p>
           </div>
         )}
 
@@ -177,7 +181,9 @@ export default function Games() {
                 {/* Game Details */}
                 <div className="grid grid-cols-3 gap-4">
                   <div className="bg-blue-900/20 rounded-lg p-4">
-                    <p className="text-blue-300 text-sm mb-1">Return to Player</p>
+                    <p className="text-blue-300 text-sm mb-1">
+                      Return to Player
+                    </p>
                     <p className="text-2xl font-bold text-white">
                       {selectedGame.rtp}%
                     </p>

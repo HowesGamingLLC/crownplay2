@@ -6,7 +6,7 @@ import { AuthRequest } from "../lib/middleware";
 // Get Dashboard KPIs
 export const handleGetDashboardKPIs: RequestHandler = async (
   req: AuthRequest,
-  res
+  res,
 ) => {
   try {
     const totalUsers = await prisma.user.count();
@@ -57,10 +57,15 @@ export const handleGetUsers: RequestHandler = async (req: AuthRequest, res) => {
     const where = search
       ? {
           OR: [
-            { email: { contains: String(search), mode: "insensitive" as const } },
+            {
+              email: { contains: String(search), mode: "insensitive" as const },
+            },
             {
               profile: {
-                name: { contains: String(search), mode: "insensitive" as const },
+                name: {
+                  contains: String(search),
+                  mode: "insensitive" as const,
+                },
               },
             },
           ],
@@ -93,12 +98,12 @@ const UpdateBalanceSchema = z.object({
 
 export const handleUpdateUserBalance: RequestHandler = async (
   req: AuthRequest,
-  res
+  res,
 ) => {
   try {
     const { userId } = req.params;
     const { goldCoins, sweepCoins, reason } = UpdateBalanceSchema.parse(
-      req.body
+      req.body,
     );
 
     const wallet = await prisma.wallet.findUnique({
@@ -150,7 +155,7 @@ const UpdateUserStatusSchema = z.object({
 
 export const handleUpdateUserStatus: RequestHandler = async (
   req: AuthRequest,
-  res
+  res,
 ) => {
   try {
     const { userId } = req.params;
@@ -186,7 +191,7 @@ export const handleUpdateUserStatus: RequestHandler = async (
 // Get Transactions
 export const handleGetTransactions: RequestHandler = async (
   req: AuthRequest,
-  res
+  res,
 ) => {
   try {
     const { limit = "20", offset = "0" } = req.query;
@@ -212,7 +217,7 @@ export const handleGetTransactions: RequestHandler = async (
 // Get Redemptions
 export const handleGetRedemptions: RequestHandler = async (
   req: AuthRequest,
-  res
+  res,
 ) => {
   try {
     const { status, limit = "20", offset = "0" } = req.query;
@@ -246,7 +251,7 @@ const UpdateRedemptionSchema = z.object({
 
 export const handleUpdateRedemption: RequestHandler = async (
   req: AuthRequest,
-  res
+  res,
 ) => {
   try {
     const { redemptionId } = req.params;

@@ -84,7 +84,10 @@ export function Header() {
                       Settings
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={handleLogout} className="text-red-400">
+                  <DropdownMenuItem
+                    onClick={handleLogout}
+                    className="text-red-400"
+                  >
                     <LogOut className="w-4 h-4 mr-2" />
                     Logout
                   </DropdownMenuItem>

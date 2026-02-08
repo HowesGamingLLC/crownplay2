@@ -11,7 +11,7 @@ export interface AuthRequest extends Request {
 export function authMiddleware(
   req: AuthRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   const authHeader = req.headers.authorization;
   const token = extractTokenFromHeader(authHeader);
@@ -32,7 +32,7 @@ export function authMiddleware(
 export function adminMiddleware(
   req: AuthRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   if (!req.user) {
     return res.status(401).json({ error: "Unauthorized" });

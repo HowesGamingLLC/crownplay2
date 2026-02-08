@@ -26,10 +26,7 @@ import {
   handleGetRedemptions as adminGetRedemptions,
   handleUpdateRedemption,
 } from "./routes/admin";
-import {
-  handleCreatePayment,
-  handleGetPaymentHistory,
-} from "./routes/payment";
+import { handleCreatePayment, handleGetPaymentHistory } from "./routes/payment";
 import { authMiddleware, adminMiddleware } from "./lib/middleware";
 
 export function createServer() {
@@ -60,7 +57,7 @@ export function createServer() {
   app.post(
     "/api/player/redemption/request",
     authMiddleware,
-    handleRequestRedemption
+    handleRequestRedemption,
   );
   app.get("/api/player/redemptions", authMiddleware, playerGetRedemptions);
 
@@ -74,27 +71,42 @@ export function createServer() {
   app.get("/api/packages", handleGetPackages);
 
   // Admin routes
-  app.get("/api/admin/dashboard/kpis", authMiddleware, adminMiddleware, handleGetDashboardKPIs);
+  app.get(
+    "/api/admin/dashboard/kpis",
+    authMiddleware,
+    adminMiddleware,
+    handleGetDashboardKPIs,
+  );
   app.get("/api/admin/users", authMiddleware, adminMiddleware, handleGetUsers);
   app.patch(
     "/api/admin/users/:userId/balance",
     authMiddleware,
     adminMiddleware,
-    handleUpdateUserBalance
+    handleUpdateUserBalance,
   );
   app.patch(
     "/api/admin/users/:userId/status",
     authMiddleware,
     adminMiddleware,
-    handleUpdateUserStatus
+    handleUpdateUserStatus,
   );
-  app.get("/api/admin/transactions", authMiddleware, adminMiddleware, adminGetTransactions);
-  app.get("/api/admin/redemptions", authMiddleware, adminMiddleware, adminGetRedemptions);
+  app.get(
+    "/api/admin/transactions",
+    authMiddleware,
+    adminMiddleware,
+    adminGetTransactions,
+  );
+  app.get(
+    "/api/admin/redemptions",
+    authMiddleware,
+    adminMiddleware,
+    adminGetRedemptions,
+  );
   app.patch(
     "/api/admin/redemptions/:redemptionId",
     authMiddleware,
     adminMiddleware,
-    handleUpdateRedemption
+    handleUpdateRedemption,
   );
 
   return app;

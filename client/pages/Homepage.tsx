@@ -108,15 +108,19 @@ export default function Homepage() {
             </h1>
 
             <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-              Experience the thrill of sweepstakes casino gaming with two coin systems:
+              Experience the thrill of sweepstakes casino gaming with two coin
+              systems:
               <br />
-              <span className="text-amber-300">Gold Coins</span> for premium games and{" "}
-              <span className="text-purple-300">Sweep Coins</span> to redeem amazing prizes.
+              <span className="text-amber-300">Gold Coins</span> for premium
+              games and <span className="text-purple-300">Sweep Coins</span> to
+              redeem amazing prizes.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button
-                onClick={() => navigate(isAuthenticated ? "/dashboard" : "/signup")}
+                onClick={() =>
+                  navigate(isAuthenticated ? "/dashboard" : "/signup")
+                }
                 className="bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-900 font-semibold py-6 text-lg px-8 rounded-lg hover:from-amber-300 hover:to-yellow-300 transition-all duration-200 shadow-lg hover:shadow-xl hover:shadow-amber-400/40 gap-2"
               >
                 {isAuthenticated ? "Go to Dashboard" : "Start Playing"}
@@ -180,8 +184,8 @@ export default function Homepage() {
                   Secure & Licensed
                 </h3>
                 <p className="text-slate-400">
-                  Play with confidence on our fully licensed and encrypted gaming
-                  platform
+                  Play with confidence on our fully licensed and encrypted
+                  gaming platform
                 </p>
               </CardContent>
             </Card>
@@ -196,7 +200,8 @@ export default function Homepage() {
                   Dual Currency System
                 </h3>
                 <p className="text-slate-400">
-                  Gold Coins for premium play, Sweep Coins for real prize redemptions
+                  Gold Coins for premium play, Sweep Coins for real prize
+                  redemptions
                 </p>
               </CardContent>
             </Card>
@@ -211,7 +216,8 @@ export default function Homepage() {
                   Big Win Potential
                 </h3>
                 <p className="text-slate-400">
-                  Win amazing prizes and climb the leaderboards for exclusive rewards
+                  Win amazing prizes and climb the leaderboards for exclusive
+                  rewards
                 </p>
               </CardContent>
             </Card>
@@ -226,7 +232,8 @@ export default function Homepage() {
                   Social Gaming
                 </h3>
                 <p className="text-slate-400">
-                  Compete with friends and join tournaments for epic gaming sessions
+                  Compete with friends and join tournaments for epic gaming
+                  sessions
                 </p>
               </CardContent>
             </Card>
@@ -273,11 +280,14 @@ export default function Homepage() {
               Ready to Start Winning?
             </h2>
             <p className="text-lg text-slate-300 mb-8">
-              Join thousands of players enjoying the best sweepstakes casino experience
+              Join thousands of players enjoying the best sweepstakes casino
+              experience
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                onClick={() => navigate(isAuthenticated ? "/dashboard" : "/signup")}
+                onClick={() =>
+                  navigate(isAuthenticated ? "/dashboard" : "/signup")
+                }
                 className="bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-900 font-semibold py-6 text-lg px-8 hover:from-amber-300 hover:to-yellow-300 gap-2"
               >
                 {isAuthenticated ? "Go to Dashboard" : "Create Account Now"}
@@ -327,7 +337,10 @@ export default function Homepage() {
                   </Link>
                 </li>
                 <li>
-                  <a href="mailto:support@crownplay.com" className="hover:text-amber-300">
+                  <a
+                    href="mailto:support@crownplay.com"
+                    className="hover:text-amber-300"
+                  >
                     Contact
                   </a>
                 </li>

@@ -13,14 +13,12 @@ const CreatePaymentSchema = z.object({
 
 export const handleCreatePayment: RequestHandler = async (
   req: AuthRequest,
-  res
+  res,
 ) => {
   try {
     if (!req.user) return res.status(401).json({ error: "Unauthorized" });
 
-    const { sourceId, packageId, amount } = CreatePaymentSchema.parse(
-      req.body
-    );
+    const { sourceId, packageId, amount } = CreatePaymentSchema.parse(req.body);
 
     // Get package
     const pkg = await prisma.package.findUnique({
@@ -64,8 +62,7 @@ export const handleCreatePayment: RequestHandler = async (
 
       // Calculate bonus
       const bonusGold = (pkg.goldAmount * BigInt(pkg.bonusPercentage)) / 100n;
-      const bonusSweep =
-        (pkg.sweepAmount * BigInt(pkg.bonusPercentage)) / 100n;
+      const bonusSweep = (pkg.sweepAmount * BigInt(pkg.bonusPercentage)) / 100n;
 
       // Update wallet
       const wallet = await prisma.wallet.findUnique({
@@ -143,7 +140,7 @@ export const handleCreatePayment: RequestHandler = async (
 
 export const handleGetPaymentHistory: RequestHandler = async (
   req: AuthRequest,
-  res
+  res,
 ) => {
   try {
     if (!req.user) return res.status(401).json({ error: "Unauthorized" });

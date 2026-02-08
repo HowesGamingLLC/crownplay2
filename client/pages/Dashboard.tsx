@@ -107,7 +107,10 @@ export default function Dashboard() {
           {/* Play Games */}
           <Card className="border-slate-700/50 bg-slate-800/30 hover:bg-slate-800/50 transition cursor-pointer">
             <CardContent className="pt-6">
-              <Link to="/games" className="flex flex-col items-center text-center">
+              <Link
+                to="/games"
+                className="flex flex-col items-center text-center"
+              >
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center mb-4">
                   <Gamepad2 className="w-6 h-6 text-white" />
                 </div>
@@ -128,7 +131,10 @@ export default function Dashboard() {
           {/* Promotions */}
           <Card className="border-slate-700/50 bg-slate-800/30 hover:bg-slate-800/50 transition cursor-pointer">
             <CardContent className="pt-6">
-              <Link to="/promotions" className="flex flex-col items-center text-center">
+              <Link
+                to="/promotions"
+                className="flex flex-col items-center text-center"
+              >
                 <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center mb-4">
                   <Gift className="w-6 h-6 text-white" />
                 </div>
@@ -149,14 +155,15 @@ export default function Dashboard() {
           {/* Transactions */}
           <Card className="border-slate-700/50 bg-slate-800/30 hover:bg-slate-800/50 transition cursor-pointer">
             <CardContent className="pt-6">
-              <Link to="/transactions" className="flex flex-col items-center text-center">
+              <Link
+                to="/transactions"
+                className="flex flex-col items-center text-center"
+              >
                 <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center mb-4">
                   <TrendingUp className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-semibold text-white mb-1">Transactions</h3>
-                <p className="text-sm text-slate-400 mb-4">
-                  View your history
-                </p>
+                <p className="text-sm text-slate-400 mb-4">View your history</p>
                 <Button
                   variant="ghost"
                   className="text-orange-400 hover:text-orange-300 gap-2"
@@ -177,7 +184,8 @@ export default function Dashboard() {
                   Diamond Rush 💎
                 </h3>
                 <p className="text-slate-300 mb-4">
-                  This week's hottest game - Chase diamonds and multiply your coins!
+                  This week's hottest game - Chase diamonds and multiply your
+                  coins!
                 </p>
                 <div className="flex gap-3">
                   <Link to="/games/diamond-rush">

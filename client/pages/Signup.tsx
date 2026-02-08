@@ -38,7 +38,9 @@ export default function Signup() {
       navigate("/dashboard");
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Signup failed. Please try again."
+        error instanceof Error
+          ? error.message
+          : "Signup failed. Please try again.",
       );
     } finally {
       setLoading(false);
@@ -58,7 +60,9 @@ export default function Signup() {
             <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-yellow-200 mb-2">
               CrownPlay
             </h1>
-            <p className="text-slate-400">Create your account and start playing</p>
+            <p className="text-slate-400">
+              Create your account and start playing
+            </p>
           </div>
 
           {/* Form */}
@@ -108,9 +112,7 @@ export default function Signup() {
                 required
                 className="bg-slate-900/50 border-amber-400/30 text-white placeholder:text-slate-500"
               />
-              <p className="text-xs text-slate-400 mt-1">
-                Min. 8 characters
-              </p>
+              <p className="text-xs text-slate-400 mt-1">Min. 8 characters</p>
             </div>
 
             {/* Confirm Password */}
@@ -137,17 +139,21 @@ export default function Signup() {
               <Checkbox
                 id="terms"
                 checked={agreeTerms}
-                onCheckedChange={(checked) =>
-                  setAgreeTerms(checked === true)
-                }
+                onCheckedChange={(checked) => setAgreeTerms(checked === true)}
                 className="mt-1 border-amber-400/50 bg-slate-900/50"
               />
-              <label htmlFor="terms" className="text-sm text-slate-400 leading-tight">
+              <label
+                htmlFor="terms"
+                className="text-sm text-slate-400 leading-tight"
+              >
                 I agree to the{" "}
-                <Link to="/terms" className="text-amber-400 hover:text-amber-300">
+                <Link
+                  to="/terms"
+                  className="text-amber-400 hover:text-amber-300"
+                >
                   Terms of Service
-                </Link>
-                {" "}and{" "}
+                </Link>{" "}
+                and{" "}
                 <Link
                   to="/privacy"
                   className="text-amber-400 hover:text-amber-300"

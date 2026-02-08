@@ -58,7 +58,7 @@ export default function AdminUsers() {
         `/api/admin/users?search=${search}&limit=${limit}&offset=${page * limit}`,
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
       const data = await response.json();
       setUsers(data.users);
@@ -90,14 +90,17 @@ export default function AdminUsers() {
         data.sweepCoins = amount;
       }
 
-      const response = await fetch(`/api/admin/users/${selectedUser.id}/balance`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        `/api/admin/users/${selectedUser.id}/balance`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(data),
         },
-        body: JSON.stringify(data),
-      });
+      );
 
       if (response.ok) {
         toast.success("Balance updated successfully");

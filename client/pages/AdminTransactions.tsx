@@ -43,7 +43,7 @@ export default function AdminTransactions() {
         `/api/admin/transactions?limit=${limit}&offset=${page * limit}`,
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
       const data = await response.json();
       setTransactions(data.transactions);
@@ -66,7 +66,9 @@ export default function AdminTransactions() {
           <h1 className="text-3xl font-bold text-amber-300 mb-2">
             Transactions
           </h1>
-          <p className="text-slate-400">All player transactions and purchases</p>
+          <p className="text-slate-400">
+            All player transactions and purchases
+          </p>
         </div>
 
         {loading ? (
@@ -117,15 +119,17 @@ export default function AdminTransactions() {
                               tx.type === "PURCHASE"
                                 ? "bg-blue-900/30 text-blue-300"
                                 : tx.type === "BONUS"
-                                ? "bg-green-900/30 text-green-300"
-                                : "bg-slate-700/30 text-slate-300"
+                                  ? "bg-green-900/30 text-green-300"
+                                  : "bg-slate-700/30 text-slate-300"
                             }`}
                           >
                             {tx.type}
                           </span>
                         </td>
                         <td className="px-6 py-4 text-white font-semibold">
-                          {(BigInt(tx.amount) / 1000000000000000000n).toString()}
+                          {(
+                            BigInt(tx.amount) / 1000000000000000000n
+                          ).toString()}
                         </td>
                         <td className="px-6 py-4">
                           <span

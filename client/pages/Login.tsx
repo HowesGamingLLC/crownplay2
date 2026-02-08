@@ -23,7 +23,9 @@ export default function Login() {
       navigate("/dashboard");
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Login failed. Please try again."
+        error instanceof Error
+          ? error.message
+          : "Login failed. Please try again.",
       );
     } finally {
       setLoading(false);
@@ -125,9 +127,7 @@ export default function Login() {
             <p className="text-xs text-blue-300 mb-2">
               <strong>Demo Credentials:</strong>
             </p>
-            <p className="text-xs text-slate-400">
-              Email: player1@example.com
-            </p>
+            <p className="text-xs text-slate-400">Email: player1@example.com</p>
             <p className="text-xs text-slate-400">Password: password123</p>
           </div>
         </div>
@@ -137,8 +137,8 @@ export default function Login() {
           By logging in, you agree to our{" "}
           <Link to="/terms" className="text-amber-400 hover:text-amber-300">
             Terms of Service
-          </Link>
-          {" "}and{" "}
+          </Link>{" "}
+          and{" "}
           <Link to="/privacy" className="text-amber-400 hover:text-amber-300">
             Privacy Policy
           </Link>

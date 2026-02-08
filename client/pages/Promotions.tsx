@@ -42,7 +42,7 @@ export default function Promotions() {
 
   const handleClaimPromotion = (promo: Promotion) => {
     toast.success(
-      `Promotion code "${promo.code}" saved! Enter it during checkout.`
+      `Promotion code "${promo.code}" saved! Enter it during checkout.`,
     );
   };
 
@@ -104,7 +104,9 @@ export default function Promotions() {
                 <CardHeader>
                   <CardTitle className="flex items-start justify-between mb-2">
                     <span className="text-amber-300">{promo.name}</span>
-                    <span className="text-2xl">{getBonusIcon(promo.bonusType)}</span>
+                    <span className="text-2xl">
+                      {getBonusIcon(promo.bonusType)}
+                    </span>
                   </CardTitle>
                   <p className="text-slate-400 text-sm">{promo.description}</p>
                 </CardHeader>

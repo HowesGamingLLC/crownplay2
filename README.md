@@ -13,6 +13,7 @@ A production-ready full-stack sweepstakes casino application featuring player ga
 ## Features
 
 ### Player Features
+
 - ✅ User authentication (signup, login, logout)
 - ✅ Dual wallet system (Gold Coins + Sweep Coins)
 - ✅ Coin package purchases
@@ -24,6 +25,7 @@ A production-ready full-stack sweepstakes casino application featuring player ga
 - ✅ KYC status tracking
 
 ### Admin Features
+
 - ✅ Dashboard with KPIs (users, coins, redemptions)
 - ✅ User management (view, search, lock/unlock)
 - ✅ Balance adjustment with audit logging
@@ -36,11 +38,13 @@ A production-ready full-stack sweepstakes casino application featuring player ga
 ## Quick Start
 
 ### Prerequisites
+
 - Node.js 18+ and pnpm
 - PostgreSQL database
 - Docker (optional, for running PostgreSQL)
 
 ### 1. Install Dependencies
+
 ```bash
 pnpm install
 ```
@@ -48,6 +52,7 @@ pnpm install
 ### 2. Set Up Database
 
 **Option A: Using Docker Compose**
+
 ```bash
 docker-compose up -d
 ```
@@ -58,11 +63,13 @@ Create a PostgreSQL database named `crownplay_db` with user `postgres` and passw
 ### 3. Configure Environment Variables
 
 Copy `.env.example` to `.env` and update as needed:
+
 ```bash
 cp .env.example .env
 ```
 
 Key variables:
+
 - `DATABASE_URL`: PostgreSQL connection string
 - `JWT_SECRET`: Secret key for JWT tokens (change in production)
 - `APP_URL`: Frontend URL (default: http://localhost:5173)
@@ -70,17 +77,20 @@ Key variables:
 ### 4. Initialize Database
 
 Run migrations and seed with demo data:
+
 ```bash
 pnpm run db:migrate
 pnpm run db:seed
 ```
 
 Or in one command:
+
 ```bash
 pnpm run db:setup
 ```
 
 ### 5. Start Development Server
+
 ```bash
 pnpm dev
 ```
@@ -115,10 +125,12 @@ pnpm format.fix
 ## Default Credentials
 
 ### Admin Account
+
 - Email: `coinkrazy26@gmail.com`
 - Password: `admin123`
 
 ### Demo Player Accounts
+
 - Email: `player1@example.com` / Password: `password123`
 - Email: `player2@example.com` / Password: `password123`
 - Email: `player3@example.com` / Password: `password123`
@@ -147,23 +159,27 @@ pnpm format.fix
 ## API Endpoints
 
 ### Authentication
+
 - `POST /api/auth/signup` - Register new account
 - `POST /api/auth/login` - Login with email/password
 - `POST /api/auth/logout` - Logout (client-side)
 - `GET /api/auth/me` - Get current user info
 
 ### Player Routes (Protected)
+
 - `GET /api/player/transactions` - Get user transactions
 - `POST /api/player/purchase` - Purchase coin package
 - `POST /api/player/redemption/request` - Request sweep coin redemption
 - `GET /api/player/redemptions` - Get redemption requests
 
 ### Public Routes
+
 - `GET /api/games` - List active games
 - `GET /api/promotions` - List active promotions
 - `GET /api/packages` - List coin packages
 
 ### Admin Routes (Protected + Admin role required)
+
 - `GET /api/admin/dashboard/kpis` - Dashboard statistics
 - `GET /api/admin/users` - List users with search/pagination
 - `PATCH /api/admin/users/:userId/balance` - Update user balance
@@ -175,36 +191,45 @@ pnpm format.fix
 ## Database Models
 
 ### User
+
 - id, email, passwordHash, role, status
 - Relations: Profile, Wallet, Transactions, RedemptionRequests
 
 ### Profile
+
 - userId, name, dob, address, city, state, postal code, country
 - kycStatus: UNVERIFIED, PENDING, VERIFIED, REJECTED
 
 ### Wallet
+
 - userId, goldCoins, sweepCoins
 
 ### Transaction
+
 - id, userId, type (PURCHASE, REDEMPTION, BONUS, ADJUSTMENT, GAME_RESULT)
 - amount, currencyType (GOLD, SWEEP), metadata
 
 ### RedemptionRequest
+
 - id, userId, amount, status (PENDING, APPROVED, REJECTED, COMPLETED)
 
 ### Package
+
 - id, name, description, priceCents, goldAmount, sweepAmount
 - bonusPercentage, isActive
 
 ### Promotion
+
 - id, name, code, bonusType, bonusValue, startAt, endAt
 - maxUses, currentUses, isActive
 
 ### Game
+
 - id, name, description, thumbnail
 - minWager, maxWager, rtp (Return to Player %), isActive
 
 ### AuditLog
+
 - id, adminId, action, targetType, targetId, metadata
 
 ## Security Considerations
@@ -219,6 +244,7 @@ pnpm format.fix
 ## Deployment
 
 ### Prerequisites for Production
+
 1. Set strong `JWT_SECRET` environment variable
 2. Update database connection string to production database
 3. Set `NODE_ENV=production`
@@ -226,16 +252,19 @@ pnpm format.fix
 5. Enable HTTPS
 
 ### Build
+
 ```bash
 pnpm build
 ```
 
 ### Run Production
+
 ```bash
 pnpm start
 ```
 
 ### Docker Deployment
+
 ```bash
 docker build -t crownplay .
 docker run -p 3000:3000 crownplay
@@ -244,6 +273,7 @@ docker run -p 3000:3000 crownplay
 ## Testing
 
 Basic unit tests are included for core services:
+
 ```bash
 pnpm test
 ```
@@ -257,6 +287,7 @@ pnpm test
 ## Support
 
 For issues or questions:
+
 - Email: support@crownplay.com
 - Check FAQ at `/faq` on the app
 

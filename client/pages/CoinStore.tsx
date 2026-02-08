@@ -67,7 +67,7 @@ export default function CoinStore() {
       if (window.Square) {
         try {
           const web = await window.Square.Web.payments(
-            process.env.REACT_APP_SQUARE_APP_ID
+            process.env.REACT_APP_SQUARE_APP_ID,
           );
           setWeb(web);
         } catch (error) {
@@ -108,7 +108,7 @@ export default function CoinStore() {
 
         if (response.ok) {
           toast.success(
-            `Successfully purchased ${pkg.name}! 🎉 Check your wallet for the coins!`
+            `Successfully purchased ${pkg.name}! 🎉 Check your wallet for the coins!`,
           );
           setSelectedPackage(null);
           // Could refresh user wallet here
@@ -121,7 +121,7 @@ export default function CoinStore() {
     } catch (error) {
       console.error("Payment error:", error);
       toast.error(
-        error instanceof Error ? error.message : "Payment processing failed"
+        error instanceof Error ? error.message : "Payment processing failed",
       );
     } finally {
       setProcessing(false);

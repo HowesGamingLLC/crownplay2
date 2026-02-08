@@ -67,7 +67,9 @@ export const handleSignup: RequestHandler = async (req, res) => {
     });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return res.status(400).json({ error: "Invalid input", details: error.errors });
+      return res
+        .status(400)
+        .json({ error: "Invalid input", details: error.errors });
     }
     console.error("Signup error:", error);
     res.status(500).json({ error: "Internal server error" });
@@ -126,7 +128,7 @@ export const handleLogout: RequestHandler = async (req, res) => {
 
 export const handleCurrentUser: RequestHandler = async (
   req: AuthRequest,
-  res
+  res,
 ) => {
   try {
     if (!req.user) {

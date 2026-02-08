@@ -5,7 +5,7 @@ import { AuthRequest } from "../lib/middleware";
 
 export const handleGetTransactions: RequestHandler = async (
   req: AuthRequest,
-  res
+  res,
 ) => {
   try {
     if (!req.user) return res.status(401).json({ error: "Unauthorized" });
@@ -38,7 +38,7 @@ const PurchasePackageSchema = z.object({
 
 export const handlePurchasePackage: RequestHandler = async (
   req: AuthRequest,
-  res
+  res,
 ) => {
   try {
     if (!req.user) return res.status(401).json({ error: "Unauthorized" });
@@ -108,7 +108,7 @@ const RequestRedemptionSchema = z.object({
 
 export const handleRequestRedemption: RequestHandler = async (
   req: AuthRequest,
-  res
+  res,
 ) => {
   try {
     if (!req.user) return res.status(401).json({ error: "Unauthorized" });
@@ -150,7 +150,7 @@ export const handleRequestRedemption: RequestHandler = async (
 
 export const handleGetRedemptions: RequestHandler = async (
   req: AuthRequest,
-  res
+  res,
 ) => {
   try {
     if (!req.user) return res.status(401).json({ error: "Unauthorized" });
