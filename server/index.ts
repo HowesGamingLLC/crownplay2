@@ -64,6 +64,10 @@ export function createServer() {
   );
   app.get("/api/player/redemptions", authMiddleware, playerGetRedemptions);
 
+  // Payment routes
+  app.post("/api/payment/create", authMiddleware, handleCreatePayment);
+  app.get("/api/payment/history", authMiddleware, handleGetPaymentHistory);
+
   // Public game/package routes
   app.get("/api/games", handleGetGames);
   app.get("/api/promotions", handleGetPromotions);
