@@ -191,13 +191,41 @@ model Game {
   name      String
   description String?
   thumbnail String?  // URL
-  
+  externalId String?  // For external game APIs
+
   minWager  BigInt
   maxWager  BigInt
   rtp       Float    // Return to Player percentage
-  
+
   isActive  Boolean  @default(true)
-  
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Payment {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  squarePaymentId String  @unique
+  squareOrderId String?
+  amount    BigInt   // Amount in cents
+
+  status    PaymentStatus @default(PENDING)
+
+  goldCoinsAwarded BigInt
+  sweepCoinsAwarded BigInt
+
+  metadata  String?  // JSON string
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
 }
