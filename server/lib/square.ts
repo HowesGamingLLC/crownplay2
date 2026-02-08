@@ -4,7 +4,7 @@
 export const paymentsApi = {
   createPayment: async (body: any) => {
     throw new Error(
-      "Square payments not configured. Please set SQUARE_ACCESS_TOKEN environment variable."
+      "Square payments not configured. Please set SQUARE_ACCESS_TOKEN environment variable.",
     );
   },
 };
@@ -12,7 +12,7 @@ export const paymentsApi = {
 export const ordersApi = {
   createOrder: async (body: any) => {
     throw new Error(
-      "Square orders not configured. Please set SQUARE_ACCESS_TOKEN environment variable."
+      "Square orders not configured. Please set SQUARE_ACCESS_TOKEN environment variable.",
     );
   },
 };
@@ -20,7 +20,7 @@ export const ordersApi = {
 export const checkoutApi = {
   createCheckout: async (body: any) => {
     throw new Error(
-      "Square checkout not configured. Please set SQUARE_ACCESS_TOKEN environment variable."
+      "Square checkout not configured. Please set SQUARE_ACCESS_TOKEN environment variable.",
     );
   },
 };
@@ -28,7 +28,7 @@ export const checkoutApi = {
 export const customersApi = {
   createCustomer: async (body: any) => {
     throw new Error(
-      "Square customers not configured. Please set SQUARE_ACCESS_TOKEN environment variable."
+      "Square customers not configured. Please set SQUARE_ACCESS_TOKEN environment variable.",
     );
   },
 };
