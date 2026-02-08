@@ -1,17 +1,21 @@
+// Square client initialization with graceful fallback
 let client: any = null;
+let initialized = false;
 
-function initializeClient() {
-  if (client) return client;
+function initializeSquareClient() {
+  if (initialized) return client;
+  initialized = true;
+
+  if (!process.env.SQUARE_ACCESS_TOKEN) {
+    console.log("Square: SQUARE_ACCESS_TOKEN not configured, payments disabled");
+    return null;
+  }
 
   try {
-    // Dynamically require square to avoid import issues
-    const square = require("square");
-    const { Client, Environment } = square;
-
-    if (!process.env.SQUARE_ACCESS_TOKEN) {
-      console.warn("SQUARE_ACCESS_TOKEN not configured, Square payments disabled");
-      return null;
-    }
+    // Use dynamic import to avoid module resolution issues
+    const squareModule = require("square");
+    const Client = squareModule.Client;
+    const Environment = squareModule.Environment;
 
     client = new Client({
       environment:
@@ -23,41 +27,38 @@ function initializeClient() {
 
     return client;
   } catch (error) {
-    console.warn("Failed to initialize Square client:", error);
+    console.log("Square: Failed to initialize client:", (error as any).message);
     return null;
   }
 }
 
+function getSquareClient() {
+  const squareClient = initializeSquareClient();
+  if (!squareClient) {
+    throw new Error(
+      "Square is not configured. Please set SQUARE_ACCESS_TOKEN environment variable."
+    );
+  }
+  return squareClient;
+}
+
 export const paymentsApi = {
-  createPayment: async (body: any) => {
-    const squareClient = initializeClient();
-    if (!squareClient) throw new Error("Square not configured");
-    return squareClient.paymentsApi.createPayment(body);
-  },
+  createPayment: (body: any) => getSquareClient().paymentsApi.createPayment(body),
 };
 
 export const ordersApi = {
-  createOrder: async (body: any) => {
-    const squareClient = initializeClient();
-    if (!squareClient) throw new Error("Square not configured");
-    return squareClient.ordersApi.createOrder(body);
-  },
+  createOrder: (body: any) => getSquareClient().ordersApi.createOrder(body),
 };
 
 export const checkoutApi = {
-  createCheckout: async (body: any) => {
-    const squareClient = initializeClient();
-    if (!squareClient) throw new Error("Square not configured");
-    return squareClient.checkoutApi.createCheckout(body);
-  },
+  createCheckout: (body: any) =>
+    getSquareClient().checkoutApi.createCheckout(body),
 };
 
 export const customersApi = {
-  createCustomer: async (body: any) => {
-    const squareClient = initializeClient();
-    if (!squareClient) throw new Error("Square not configured");
-    return squareClient.customersApi.createCustomer(body);
-  },
+  createCustomer: (body: any) =>
+    getSquareClient().customersApi.createCustomer(body),
 };
 
+export const getClient = () => initializeSquareClient();
 export default client;
