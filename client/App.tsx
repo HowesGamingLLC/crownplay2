@@ -106,6 +106,62 @@ const App = () => (
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/admin/users"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <AdminUsers />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/transactions"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <AdminTransactions />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/redemptions"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <AdminRedemptions />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/packages"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <Placeholder title="Packages Management" />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/promotions"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <Placeholder title="Promotions Management" />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/games"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <Placeholder title="Games Management" />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/content"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <Placeholder title="Content Management" />
+                </ProtectedRoute>
+              }
+            />
 
             {/* Catch-all */}
             <Route path="*" element={<NotFound />} />
