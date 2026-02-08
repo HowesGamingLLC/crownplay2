@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Header } from "@/components/header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
 import {
   Users,
@@ -9,6 +11,7 @@ import {
   Gift,
   AlertCircle,
   Activity,
+  ArrowRight,
 } from "lucide-react";
 import { Spinner } from "@/components/ui/spinner";
 
