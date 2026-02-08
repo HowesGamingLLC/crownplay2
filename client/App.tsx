@@ -39,9 +39,9 @@ const App = () => (
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/faq" element={<Placeholder title="FAQ" />} />
-            <Route path="/terms" element={<Placeholder title="Terms of Service" />} />
-            <Route path="/privacy" element={<Placeholder title="Privacy Policy" />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
 
             {/* Protected Routes - Player */}
             <Route
