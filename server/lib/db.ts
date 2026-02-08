@@ -1,16 +1,14 @@
-import pkg from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
-const { PrismaClient } = pkg;
-
-let prisma: any;
+let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === "production") {
-  prisma = new pkg.PrismaClient();
+  prisma = new PrismaClient();
 } else {
   // Avoid instantiating multiple PrismaClient instances in development
-  const globalForPrisma = global as unknown as { prisma: any };
+  const globalForPrisma = global as unknown as { prisma: PrismaClient };
   if (!globalForPrisma.prisma) {
-    globalForPrisma.prisma = new pkg.PrismaClient({
+    globalForPrisma.prisma = new PrismaClient({
       log: ["warn", "error"],
     });
   }
