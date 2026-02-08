@@ -1,0 +1,203 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  passwordHash String
+  role      Role       @default(PLAYER)
+  status    UserStatus @default(ACTIVE)
+  
+  profile   Profile?
+  wallet    Wallet?
+  transactions Transaction[]
+  redemptionRequests RedemptionRequest[]
+  auditLogs AuditLog[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  PLAYER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  LOCKED
+  SUSPENDED
+}
+
+model Profile {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  name      String?
+  dob       DateTime?
+  address   String?
+  city      String?
+  state     String?
+  postalCode String?
+  country   String?
+  
+  kycStatus KYCStatus @default(UNVERIFIED)
+  kycVerifiedAt DateTime?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum KYCStatus {
+  UNVERIFIED
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+model Wallet {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  goldCoins BigInt   @default(0)
+  sweepCoins BigInt  @default(0)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  type      TransactionType
+  amount    BigInt
+  currencyType CurrencyType
+  metadata  String?  // JSON string for additional data
+  
+  createdAt DateTime @default(now())
+}
+
+enum TransactionType {
+  PURCHASE
+  REDEMPTION
+  BONUS
+  ADJUSTMENT
+  GAME_RESULT
+}
+
+enum CurrencyType {
+  GOLD
+  SWEEP
+}
+
+model RedemptionRequest {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  amount    BigInt
+  status    RedemptionStatus @default(PENDING)
+  notes     String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum RedemptionStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  COMPLETED
+}
+
+model Package {
+  id        String   @id @default(cuid())
+  name      String
+  description String?
+  priceCents BigInt   // Price in cents
+  goldAmount BigInt
+  sweepAmount BigInt
+  bonusPercentage Int @default(0)
+  
+  isActive  Boolean  @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Promotion {
+  id        String   @id @default(cuid())
+  name      String
+  description String?
+  code      String   @unique
+  
+  bonusType BonusType
+  bonusValue BigInt   // Amount or percentage
+  
+  startAt   DateTime
+  endAt     DateTime
+  isActive  Boolean  @default(true)
+  maxUses   Int?
+  currentUses Int @default(0)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum BonusType {
+  GOLD_COINS
+  SWEEP_COINS
+  PERCENTAGE
+}
+
+model ContentBlock {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  title     String?
+  body      String   // Rich text content
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  adminId   String
+  admin     User     @relation(fields: [adminId], references: [id], onDelete: SetNull)
+  
+  action    String
+  targetType String
+  targetId  String
+  metadata  String?  // JSON string
+  
+  createdAt DateTime @default(now())
+}
+
+model Game {
+  id        String   @id @default(cuid())
+  name      String
+  description String?
+  thumbnail String?  // URL
+  
+  minWager  BigInt
+  maxWager  BigInt
+  rtp       Float    // Return to Player percentage
+  
+  isActive  Boolean  @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
