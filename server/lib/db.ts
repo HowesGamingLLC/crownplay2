@@ -13,22 +13,14 @@ const getDatabaseUrl = () => {
 
 if (process.env.NODE_ENV === "production") {
   prisma = new PrismaClient({
-    datasources: {
-      db: {
-        url: getDatabaseUrl(),
-      },
-    },
+    datasourceUrl: getDatabaseUrl(),
   });
 } else {
   // Avoid instantiating multiple PrismaClient instances in development
   const globalForPrisma = global as unknown as { prisma: InstanceType<typeof PrismaClient> };
   if (!globalForPrisma.prisma) {
     globalForPrisma.prisma = new PrismaClient({
-      datasources: {
-        db: {
-          url: getDatabaseUrl(),
-        },
-      },
+      datasourceUrl: getDatabaseUrl(),
       log: ["warn", "error"],
     });
   }
