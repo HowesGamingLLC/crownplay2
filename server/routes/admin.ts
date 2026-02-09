@@ -257,9 +257,18 @@ export const handleUpdateRedemption: RequestHandler = async (
     const { redemptionId } = req.params;
     const { status, notes } = UpdateRedemptionSchema.parse(req.body);
 
+    // Fetch existing redemption first
+    const existing = await prisma.redemptionRequest.findUnique({
+      where: { id: redemptionId },
+    });
+
+    if (!existing) {
+      return res.status(404).json({ error: "Redemption not found" });
+    }
+
     const redemption = await prisma.redemptionRequest.update({
       where: { id: redemptionId },
-      data: { status, notes: notes || redemption.notes },
+      data: { status, notes: notes ?? existing.notes },
     });
 
     // Create audit log
