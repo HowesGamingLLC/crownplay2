@@ -93,7 +93,7 @@ export const handleGetUsers: RequestHandler = async (req: AuthRequest, res) => {
 const UpdateBalanceSchema = z.object({
   goldCoins: z.number().optional(),
   sweepCoins: z.number().optional(),
-  reason: z.string(),
+  reason: z.string().min(1, "Reason is required"),
 });
 
 export const handleUpdateUserBalance: RequestHandler = async (
@@ -116,10 +116,14 @@ export const handleUpdateUserBalance: RequestHandler = async (
 
     const updates: any = {};
     if (goldCoins !== undefined) {
-      updates.goldCoins = wallet.goldCoins + BigInt(goldCoins);
+      // Convert to integer to avoid BigInt conversion errors
+      const amount = Math.trunc(goldCoins);
+      updates.goldCoins = wallet.goldCoins + BigInt(amount);
     }
     if (sweepCoins !== undefined) {
-      updates.sweepCoins = wallet.sweepCoins + BigInt(sweepCoins);
+      // Convert to integer to avoid BigInt conversion errors
+      const amount = Math.trunc(sweepCoins);
+      updates.sweepCoins = wallet.sweepCoins + BigInt(amount);
     }
 
     const updatedWallet = await prisma.wallet.update({
