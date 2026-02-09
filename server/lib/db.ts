@@ -1,6 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import pkg from "@prisma/client";
+const { PrismaClient } = pkg;
 
-let prisma: PrismaClient;
+let prisma: typeof pkg.PrismaClient;
 
 if (process.env.NODE_ENV === "production") {
   prisma = new PrismaClient();
