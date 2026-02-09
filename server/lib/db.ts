@@ -1,5 +1,5 @@
 import pkg from "@prisma/client";
-import { PgDialect } from "@prisma/adapter-pg";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
 
 const { PrismaClient } = pkg;
@@ -10,7 +10,7 @@ if (!connectionString) {
 }
 
 const pool = new Pool({ connectionString });
-const adapter = new PgDialect(pool);
+const adapter = new PrismaPg(pool);
 
 let prisma: InstanceType<typeof PrismaClient>;
 
