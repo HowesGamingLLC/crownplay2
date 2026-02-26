@@ -77,10 +77,21 @@ export default function AdminUsers() {
       return;
     }
 
+    if (!editReason.trim()) {
+      toast.error("Please enter a reason");
+      return;
+    }
+
     if (!token) return;
 
     try {
-      const amount = parseFloat(editAmount);
+      // Enforce integer input
+      const amount = parseInt(editAmount, 10);
+      if (isNaN(amount)) {
+        toast.error("Amount must be a valid number");
+        return;
+      }
+
       const data: any = {
         reason: editReason,
       };
@@ -341,6 +352,7 @@ export default function AdminUsers() {
                     </label>
                     <Input
                       type="number"
+                      step="1"
                       value={editAmount}
                       onChange={(e) => setEditAmount(e.target.value)}
                       placeholder="100"
